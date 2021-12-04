@@ -28,7 +28,7 @@ const Header = ({
           onClick={() => updateMaze(mazeParams)}
         >
           generate
-          </Button>
+        </Button>
 
         <IconButton
           color="inherit"

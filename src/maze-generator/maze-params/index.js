@@ -48,13 +48,7 @@ export const fixParams = params => {
   params = { x, y, size, start, sMin, sMax, finish, fMin, fMax };
 
   for (const key in params) {
-    const item = params[key];
-    if (
-      typeof item !== 'number' ||
-      Math.floor(item) !== item ||
-      !isFinite(item)
-
-    ) params[key] = initParams[key];
+    if (!Number.isInteger(params[key])) params[key] = initParams[key];
   }
 
   ({ x, y, size, start, sMin, sMax, finish, fMin, fMax } = params);

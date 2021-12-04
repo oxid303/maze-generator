@@ -8,9 +8,7 @@ const Maze = ({ maze, mazeParams, isShowPath }) => {
   return (
     <>
       {maze && <div style={styles.mazeWrapper}>
-        <span></span>
-
-        <div>
+        <div style={styles.mazeContainer}>
           <Ways ways={maze.ways} mazeParams={mazeParams} />
 
           <div style={styles.isShowPath(isShowPath)}>

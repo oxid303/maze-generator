@@ -1,13 +1,13 @@
-import { getVectors } from '../utils';
+import { getRandomFromArr, getVectors } from '../utils';
 
-const stepper = (shape, ways, exits, path, steps) => {
+const stepper = (grid, exits, ways, path, steps) => {
 
   const step = steps.length - 1;
   const { vectors, curr: point } = steps[step];
 
   if (vectors.length) {
 
-    const vector = vectors[Math.floor(Math.random() * (vectors.length))];
+    const vector = getRandomFromArr(vectors);
     steps[step].vectors = vectors.filter(v => v !== vector);
 
     const prev = vector + point;
@@ -21,16 +21,12 @@ const stepper = (shape, ways, exits, path, steps) => {
       if (exits.size) path.add(point);
     }
 
-    if (shape.has(curr)) {
+    if (grid.has(curr)) {
 
       ways.add(prev);
-      shape.delete(curr);
+      grid.delete(curr);
 
-      steps.push({
-        prev,
-        curr,
-        vectors: getVectors(vector),
-      });
+      steps.push({ prev, curr, vectors: getVectors(vector) });
 
       if (exits.size === 1) {
         path.add(prev);

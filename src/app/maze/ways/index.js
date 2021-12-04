@@ -12,7 +12,7 @@ const Ways = ({ ways, mazeParams }) => {
     const point = size * POINT_SIZE;
     const full = point + size;
     const half = full / 2;
-    const third = full / 3;
+    const shift = half - size;
     const width = x * full + size;
     const height = y * full + size;
 
@@ -29,14 +29,11 @@ const Ways = ({ ways, mazeParams }) => {
     for (let i = 0; i <= x; ++i) ctx.fillRect(i * full, 0, size, height);
 
     ctx.fillStyle = '#fff';
-    const length = ways.length;
-
-    for (let i = 0; i < length; ++i) {
-      const { x, y } = ways[i];
+    for (const { x, y } of ways) {
 
       ctx.fillRect(
-        x % 2 ? x * half - third : x * half,
-        y % 2 ? y * half - third : y * half,
+        x % 2 ? x * half - shift : x * half,
+        y % 2 ? y * half - shift : y * half,
         x % 2 ? point : size,
         y % 2 ? point : size
       );

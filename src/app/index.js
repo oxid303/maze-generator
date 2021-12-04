@@ -12,16 +12,6 @@ const App = () => {
   let [isShowPath, setIsShowPath] = React.useState(false);
   let [loading, setLoading] = React.useState(true);
 
-  React.useEffect(() => {
-    const initParams = LS.getMazeParams();
-    setMazeParams(initParams);
-    setMaze(generateMaze(initParams));
-
-    setTimeout(() => {
-      setLoading(false);
-    });
-  }, []);
-
   const updateMaze = params => {
     setLoading(true);
     setIsShowPath(false);
@@ -35,6 +25,12 @@ const App = () => {
       });
     });
   };
+
+  React.useEffect(() => {
+    const initParams = LS.getMazeParams();
+    setMazeParams(initParams);
+    updateMaze(initParams);
+  }, []);
 
   const updateMazeParams = params => {
     LS.setMazeParams(params);

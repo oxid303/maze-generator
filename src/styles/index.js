@@ -6,19 +6,24 @@ const styles = {
     left: 0,
     right: 0,
     bottom: 0,
-    display: 'grid',
-    gridTemplateColumns: 'auto auto',
   },
+  mazeContainer: {
+    display: 'grid',
+    placeItems: 'center',
+    inset: 'auto 0',
+  },
+  isShowPath: isShowPath => ({
+    visibility: isShowPath ? 'visible' : 'hidden',
+    position: 'absolute',
+    display: 'grid',
+    placeItems: 'center',
+    inset: 'auto 0',
+  }),
   canvas: {
     display: 'block',
     outline: 0,
     padding: 20,
   },
-  isShowPath: isShowPath => ({
-    visibility: isShowPath ? 'visible' : 'hidden',
-    position: 'absolute',
-    top: 0,
-  }),
   isShowMenu: isShow => ({
     visibility: isShow ? 'visible' : 'hidden',
     position: 'absolute',

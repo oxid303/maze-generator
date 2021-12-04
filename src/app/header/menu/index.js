@@ -5,9 +5,7 @@ import RangeSlider from '../range-slider';
 import { IconStart } from '../../../assets/icons';
 import { IconFinish } from '../../../assets/icons';
 import LS from '../../../utils/local-storage';
-import {
-  initParams, getLine, resetMinMax,
-} from '../../../maze-generator/maze-params';
+import { getLine, resetMinMax } from '../../../maze-generator/maze-params';
 import {
   XY_MIN, XY_MAX, SIZE_MIN, SIZE_MAX, SF_MIN,
 } from '../../../maze-generator/constants';
@@ -16,11 +14,7 @@ import styles from '../../../styles';
 
 const Menu = ({ updateMaze, updateMazeParams, setIsShowMenu }) => {
 
-  let [menuParams, setMenuParams] = React.useState(initParams);
-
-  React.useEffect(() => {
-    setMenuParams(LS.getMenuParams());
-  }, []);
+  let [menuParams, setMenuParams] = React.useState(LS.getMenuParams());
 
   const { x, y, size, start, sMin, sMax, finish, fMin, fMax } = menuParams;
 

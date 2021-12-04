@@ -5,4 +5,4 @@ export const SIZE_MAX = 5;
 export const EXIT_MIN = 0;
 export const EXIT_MAX = 3;
 export const SF_MIN = 1;
-export const NUM = 10000;
+export const X_NUM = 10000;

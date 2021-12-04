@@ -1,7 +1,7 @@
 import { fixParams, modifyParams } from './maze-params';
-import { getRandomFromSet, getVectors, transformSetToArr } from './utils';
+import { getRandomFromArr, getVectors, transformSetToArr } from './utils';
 import createExits from './create-exits';
-import createShape from './create-shape';
+import createGrid from './create-grid';
 import stepper from './stepper';
 
 const mazeGenerator = params => {
@@ -9,23 +9,21 @@ const mazeGenerator = params => {
   params = fixParams(params);
   params = modifyParams(params);
 
+  const grid = createGrid(params);
   const exits = createExits(params);
-  const shape = createShape(params);
   const ways = new Set();
   const path = new Set();
 
-  const start = getRandomFromSet(shape);
-  shape.delete(start);
+  const first = getRandomFromArr([...grid]);
+  grid.delete(first);
 
-  const steps = [];
-
-  steps.push({
-    curr: start,
+  const steps = [{
+    curr: first,
     vectors: getVectors(),
-  });
+  }];
 
-  while (shape.size || exits.size) {
-    stepper(shape, ways, exits, path, steps);
+  while (grid.size || exits.size) {
+    stepper(grid, exits, ways, path, steps);
   }
 
   return {

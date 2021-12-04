@@ -1,4 +1,4 @@
-import { NUM } from '../constants';
+import { X_NUM } from '../constants';
 
 const createExits = ({ x, y, start, sMin, sMax, finish, fMin, fMax }) => {
 
@@ -7,19 +7,15 @@ const createExits = ({ x, y, start, sMin, sMax, finish, fMin, fMax }) => {
   };
 
   const getExit = [
-    (min, max) => getRandom(min, max) * NUM,
-    (min, max) => (x - 1) * NUM + getRandom(min, max),
-    (min, max) => getRandom(min, max) * NUM + y - 1,
+    (min, max) => getRandom(min, max) * X_NUM,
+    (min, max) => (x - 1) * X_NUM + getRandom(min, max),
+    (min, max) => getRandom(min, max) * X_NUM + y - 1,
     (min, max) => getRandom(min, max),
   ];
 
   const getFinish = prev => {
     const curr = getExit[finish](fMin, fMax);
-
-    if (curr === prev) {
-      return getFinish(prev);
-
-    } else return curr;
+    return curr === prev ? getFinish(prev) : curr;
   };
 
   const exits = new Set();
